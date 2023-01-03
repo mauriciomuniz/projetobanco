@@ -1,0 +1,15 @@
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\projetobanco.csproj.AssemblyReference.cache
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\projetobanco.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\projetobanco.AssemblyInfoInputs.cache
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\projetobanco.AssemblyInfo.cs
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\projetobanco.csproj.CoreCompileInputs.cache
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\bin\Debug\net7.0\projetobanco.exe
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\bin\Debug\net7.0\projetobanco.deps.json
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\bin\Debug\net7.0\projetobanco.runtimeconfig.json
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\bin\Debug\net7.0\projetobanco.dll
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\bin\Debug\net7.0\projetobanco.pdb
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\projetobanco.dll
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\refint\projetobanco.dll
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\projetobanco.pdb
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\projetobanco.genruntimeconfig.cache
+C:\Users\mauri\Documents\SharpCodders\c# no vscode\projetobanco\obj\Debug\net7.0\ref\projetobanco.dll
