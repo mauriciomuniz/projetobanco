@@ -9,14 +9,14 @@ namespace projetobanco
 
     public class Usuario
     {
-        public int Cpf{get;set;}
+        public long Cpf{get;set;}
         public string Titular{get;set;}
         public string Senha{get;set;}
         public double Saldo{get;set;}
         
         
 
-        public Usuario(int cpf, string titular, string senha, double saldo )
+        public Usuario(long cpf, string titular, string senha, double saldo )
         {
             this.Cpf=cpf;
             this.Titular=titular;
@@ -32,12 +32,14 @@ namespace projetobanco
         public void Depositar(double valor)
         {
             Saldo += valor;
+            Console.WriteLine($"A conta do cpf {Cpf} depositou um valor de {valor:F2}");
         }
         public void Sacar(double valor)
         {   
             if(valor <= Saldo)
             {
                 Saldo -= valor;
+                Console.WriteLine($"A conta do cpf {Cpf} sacou um valor de {valor:F2}");
             }
             else
             {
