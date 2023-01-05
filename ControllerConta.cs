@@ -18,7 +18,7 @@ namespace projetobanco
             
         }
 
-        public Usuario RegistrarNovoUsuario(int cpf, string titular, string senha, double saldo )
+        public Usuario RegistrarNovoUsuario(long cpf, string titular, string senha, double saldo )
         {   
             Usuario usuario = new Usuario(cpf,titular,senha,saldo);
             usuarios.Add(usuario);
@@ -26,7 +26,7 @@ namespace projetobanco
        
         }
 
-        public void DeletarUsuario(int buscacpf)
+        public void DeletarUsuario(long buscacpf)
         {
             
             Usuario u = usuarios.Find(x=>x.Cpf == buscacpf);
@@ -35,7 +35,7 @@ namespace projetobanco
             {
                 Console.WriteLine("Usuário não encontrado.");
                 Console.WriteLine("Digite novamente o cpf do usuário que vc quer deletar:");
-                buscacpf = int.Parse(Console.ReadLine()); 
+                buscacpf = long.Parse(Console.ReadLine()); 
                 u = usuarios.Find(x=>x.Cpf == buscacpf);
                 usuarios.Remove(u); 
             }
@@ -50,7 +50,7 @@ namespace projetobanco
             }
         }
         
-        public void DetalhesUsuario(int buscacpf2)
+        public void DetalhesUsuario(long buscacpf2)
         {
             Usuario u = usuarios.Find(x=>x.Cpf == buscacpf2);
             
@@ -58,7 +58,7 @@ namespace projetobanco
             {
                Console.WriteLine("Usuário não encontrado.");
                Console.WriteLine("Digite novamente o cpf do usuário que vc quer buscar:"); 
-               buscacpf2 = int.Parse(Console.ReadLine());
+               buscacpf2 = long.Parse(Console.ReadLine());
                u = usuarios.Find(x=>x.Cpf == buscacpf2);
                u.ToString();
             }
@@ -74,35 +74,65 @@ namespace projetobanco
             }
 
             Console.WriteLine($"total no banco é: {total:F2}");
+            Console.WriteLine();
         }
 
-        public void ValidarCPF()
+        public Usuario ValidacaoConta()
         {
-            foreach(Usuario obj in usuarios)
+            Console.WriteLine("Informe o cpf:");
+            long cpfmanipula = int.Parse(Console.ReadLine());
+            Console.WriteLine("Informe a senha:");
+            string senhamanipula = Console.ReadLine();
+            Usuario u = usuarios.Find(x=>x.Cpf == cpfmanipula && x.Senha ==senhamanipula );
+            
+            while(u==null)
             {
-                //se o cpf passado bater com o cpf de algum usuário
-                //apresentar mensagem invalida e pede um cpf valido
-
-                //tratar excessões
-
-                //se possivel algoritmo de cpf
-
-                //manipular conta
+               Console.WriteLine("Usuário não encontrado.");
+               Console.WriteLine("Digite novamente os dados correntamente"); 
+               Console.WriteLine("Digite o cpf"); 
+               cpfmanipula = long.Parse(Console.ReadLine());
+               Console.WriteLine("Informe a senha:");
+               senhamanipula = Console.ReadLine();
+               u = usuarios.Find(x=>x.Cpf == cpfmanipula && x.Senha ==senhamanipula );
+               u.ToString();
             }
+            Console.WriteLine(u.ToString());
+
+            return u;
         }
 
-        public void Sacando()
-        {
+        
 
+        
+        /* tratar algumas excessões
+           -feitas para cpf invalidos, saques,depositos, contas inexistentes 
+        */
+        //se possivel algoritmo de cpf
+
+        //falta transferência
+
+        public void Sacando(Usuario logado)
+        {
+            Console.WriteLine("Digite a quantia que deseja sacar:");
+            double saque = double.Parse(Console.ReadLine());
+            logado.Sacar(saque);
+            
         }
 
-        public void Depositando()
+        public void Depositando(Usuario logado)
         {
-
+            Console.WriteLine("Digite a quantia que deseja depositar:");
+            double deposito = double.Parse(Console.ReadLine());
+            logado.Depositar(deposito);
+            
         }
 
-        public void Transferindo()
+        public void Transferindo(Usuario logado)
         {
+            Console.WriteLine("Informe o cpf destino:");
+            long cpfdestino = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite a quantia que deseja transferir:");
+            double transferir = double.Parse(Console.ReadLine());
             
         }
     }
