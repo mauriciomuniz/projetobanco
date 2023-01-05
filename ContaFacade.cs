@@ -11,12 +11,12 @@ namespace projetobanco
         }
 
         //chamadas
-        public Usuario RegistrarNovoUsuario(int cpf, string titular, string senha, double saldo ) 
+        public Usuario RegistrarNovoUsuario(long cpf, string titular, string senha, double saldo ) 
         {
 		    return cc.RegistrarNovoUsuario(cpf, titular, senha, saldo);
 	    }
 
-        public void DeletarUsuario(int buscacpf)
+        public void DeletarUsuario(long buscacpf)
         {
             this.cc.DeletarUsuario(buscacpf);
         }
@@ -26,7 +26,7 @@ namespace projetobanco
             this.cc.ListarTodasAsContas();
         }
 
-        public void DetalhesUsuario(int buscacpf2)
+        public void DetalhesUsuario(long buscacpf2)
         {
             this.cc.DetalhesUsuario(buscacpf2);
         }
@@ -34,6 +34,26 @@ namespace projetobanco
         public void TotalBanco()
         {
             this.cc.TotalBanco();
+        }
+
+        public Usuario ValidacaoConta()
+        {
+            return cc.ValidacaoConta();
+        }
+
+        public void Sacando(Usuario logado)
+        {
+            this.cc.Sacando(logado);
+        }
+
+        public void Depositando(Usuario logado)
+        {
+            this.cc.Depositando(logado);
+        }
+
+        public void Transferindo(Usuario logado)
+        {
+            this.cc.Transferindo(logado);
         }
 
     }
