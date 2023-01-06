@@ -51,9 +51,24 @@ namespace projetobanco
             this.cc.Depositando(logado);
         }
 
-        public void Transferindo(Usuario logado)
+        public void Transferindo(Usuario logado, Usuario contadestino, double valorTransferir)
         {
-            this.cc.Transferindo(logado);
+            this.cc.Transferindo(logado, contadestino, valorTransferir);
+        }
+
+        public long CPFigual(long cpf)
+        {
+            return cc.CPFigual(cpf);
+        }
+
+        public long CPFvalido(String cpf)
+        {
+            return cc.CPFvalido(cpf);
+        }
+
+        public Usuario DestinoValido()
+        {
+            return cc.DestinoValido();
         }
 
     }
