@@ -32,21 +32,20 @@ namespace projetobanco
         public void Depositar(double valor)
         {
             Saldo += valor;
-            Console.WriteLine($"A conta do cpf {Cpf} depositou um valor de {valor:F2}");
         }
         public void Sacar(double valor)
         {   
             if(valor <= Saldo)
             {
                 Saldo -= valor;
-                Console.WriteLine($"A conta do cpf {Cpf} sacou um valor de {valor:F2}");
             }
             else
             {
-                Console.WriteLine("Saque não pode ser realizado. Saldo insuficiente");
+                Console.WriteLine("Saldo insuficiente");
             }
             
         }
+
 
         public override string ToString()
         {
