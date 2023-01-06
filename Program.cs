@@ -61,9 +61,9 @@ namespace projetobanco
                         break;
                     case 1:
 
-                        Console.WriteLine("Digite o cpf do Usuário:");
+                        Console.WriteLine("Digite o cpf do Usuário(somente numeros):");
                         long cpf = long.Parse(Console.ReadLine());
-
+                        cpf = f.CPFigual(f.CPFvalido(Convert.ToString(cpf)));
                         Console.WriteLine("Digite o nome do Usuário:");
                         string titular = Console.ReadLine();
 
@@ -81,6 +81,7 @@ namespace projetobanco
                         f.DeletarUsuario(buscacpf);
                         break;
                     case 3:
+                        Console.WriteLine();
                         f.ListarTodasAsContas();
                         Console.WriteLine();
                         break;
@@ -99,7 +100,10 @@ namespace projetobanco
                         Console.WriteLine();
                         do
                         {
-                            
+                            if(logado==null)
+                            {
+                                suboption=0;
+                            }
                             SubMenu();
                             try
                             {
@@ -114,8 +118,7 @@ namespace projetobanco
                               Console.WriteLine("Caracteres não são validos");
                             }
 
-                            
-                            
+                                                      
 
                             switch(suboption)
                             {
@@ -132,7 +135,12 @@ namespace projetobanco
 
                                 case 3:
                                 Console.WriteLine("Opção de transferência escolhida.");
-                                f.Transferindo(logado);
+                                Console.WriteLine("Digite os dados da conta destino");
+                                Usuario contadestino = f.DestinoValido();
+                                Console.WriteLine("Digite a quantia que deseja transferir:");
+                                double valorTransferir = double.Parse(Console.ReadLine());
+                                f.Transferindo(logado,contadestino,valorTransferir);
+                                Console.WriteLine();
                                 break;
                             }
 
