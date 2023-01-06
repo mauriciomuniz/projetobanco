@@ -3,7 +3,7 @@ using projetobanco;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Text.RegularExpressions;
 namespace projetobanco
 {
 
@@ -77,6 +77,41 @@ namespace projetobanco
             Console.WriteLine();
         }
 
+
+        public long CPFigual(long cpf)
+        {
+            Usuario u = usuarios.Find(x=>x.Cpf == cpf);
+            
+            while(u!=null)
+            {
+               Console.WriteLine("Usuário já existente.");
+               Console.WriteLine("Digite um novo cpf:"); 
+               cpf = long.Parse(Console.ReadLine());
+               u = usuarios.Find(x=>x.Cpf == cpf);
+               
+            }
+            return cpf;
+        }
+
+        public long CPFvalido(String cpf)
+        {
+            
+            Regex regex = new Regex(@"([0-9]{11}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})",RegexOptions.IgnoreCase);
+            var combinou = regex.Match(cpf);
+            
+            while(!combinou.Success)
+            {
+                Console.WriteLine("CPF inválido.");
+                Console.Write("Informe um cpf para validação(somente numeros): ");
+                cpf = Console.ReadLine();
+                regex = new Regex(@"([0-9]{11}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})",RegexOptions.IgnoreCase);
+                combinou = regex.Match(cpf);
+                
+            }
+            
+           return long.Parse(cpf);
+        }
+
         public Usuario ValidacaoConta()
         {
             Console.WriteLine("Informe o cpf:");
@@ -95,27 +130,56 @@ namespace projetobanco
                senhamanipula = Console.ReadLine();
                u = usuarios.Find(x=>x.Cpf == cpfmanipula && x.Senha ==senhamanipula );
                u.ToString();
+
+               
             }
+            Console.WriteLine();
+            Console.WriteLine(u.ToString());
+
+            return u;
+        }
+
+        public Usuario DestinoValido()
+        {
+            Console.WriteLine("Informe o cpf:");
+            long cpfdestino = int.Parse(Console.ReadLine());
+            Usuario u = usuarios.Find(x=>x.Cpf == cpfdestino);
+            
+            while(u==null)
+            {
+               Console.WriteLine("Usuário não encontrado.");
+               Console.WriteLine("Digite novamente os dados correntamente"); 
+               Console.WriteLine("Digite o cpf"); 
+               cpfdestino = long.Parse(Console.ReadLine());
+               u = usuarios.Find(x=>x.Cpf == cpfdestino);
+               u.ToString();
+               
+            }
+            Console.WriteLine();
             Console.WriteLine(u.ToString());
 
             return u;
         }
 
         
-
-        
         /* tratar algumas excessões
-           -feitas para cpf invalidos, saques,depositos, contas inexistentes 
+           -FEITO para cpf igual, saque,deposito,transferencia,
+           -FEITO cpf invalido em buscas
+           -FEITO cpf 11 digitos
         */
         //se possivel algoritmo de cpf
 
-        //falta transferência
 
         public void Sacando(Usuario logado)
         {
             Console.WriteLine("Digite a quantia que deseja sacar:");
             double saque = double.Parse(Console.ReadLine());
             logado.Sacar(saque);
+
+            if(saque <= logado.Saldo)
+            {
+                Console.WriteLine($"A conta do cpf {logado.Cpf} sacou um valor de {saque:F2}");
+            }
             
         }
 
@@ -124,15 +188,20 @@ namespace projetobanco
             Console.WriteLine("Digite a quantia que deseja depositar:");
             double deposito = double.Parse(Console.ReadLine());
             logado.Depositar(deposito);
+            Console.WriteLine($"A conta do cpf {logado.Cpf} depositou um valor de {deposito:F2}");
             
         }
 
-        public void Transferindo(Usuario logado)
+        public void Transferindo(Usuario logado,Usuario contadestino, double valorTransferir)
         {
-            Console.WriteLine("Informe o cpf destino:");
-            long cpfdestino = int.Parse(Console.ReadLine());
-            Console.WriteLine("Digite a quantia que deseja transferir:");
-            double transferir = double.Parse(Console.ReadLine());
+           
+            logado.Sacar(valorTransferir);
+            if(valorTransferir <= logado.Saldo)
+            {
+                contadestino.Depositar(valorTransferir);
+                Console.WriteLine($"A conta do cpf {logado.Cpf} transferiu um valor de {valorTransferir:F2} na conta {contadestino.Cpf}");
+            }
+            
             
         }
     }
