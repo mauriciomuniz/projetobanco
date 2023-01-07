@@ -77,7 +77,7 @@ namespace projetobanco
                         break;
                     case 2:
                         Console.WriteLine("Digite o cpf do usuário que vc quer deletar:");
-                        long buscacpf = int.Parse(Console.ReadLine());
+                        long buscacpf = long.Parse(Console.ReadLine());
                         f.DeletarUsuario(buscacpf);
                         break;
                     case 3:
@@ -87,7 +87,7 @@ namespace projetobanco
                         break;
                     case 4:
                         Console.WriteLine("Digite o cpf do Usuário para mais detalhes:");
-                        long buscacpf2 = int.Parse(Console.ReadLine());
+                        long buscacpf2 = long.Parse(Console.ReadLine());
                         f.DetalhesUsuario(buscacpf2);
                         break;
                     case 5:
