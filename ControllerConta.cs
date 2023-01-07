@@ -96,7 +96,9 @@ namespace projetobanco
         public long CPFvalido(String cpf)
         {
             
-            Regex regex = new Regex(@"([0-9]{11}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})",RegexOptions.IgnoreCase);
+            //Regex regex = new Regex(@"([0-9]{11}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})",RegexOptions.IgnoreCase);
+            Regex regex = new Regex(@"([0-9]{11})",RegexOptions.IgnoreCase);
+
             var combinou = regex.Match(cpf);
             
             while(!combinou.Success)
@@ -104,7 +106,8 @@ namespace projetobanco
                 Console.WriteLine("CPF inválido.");
                 Console.Write("Informe um cpf para validação(somente numeros): ");
                 cpf = Console.ReadLine();
-                regex = new Regex(@"([0-9]{11}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})",RegexOptions.IgnoreCase);
+                // regex = new Regex(@"([0-9]{11}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})",RegexOptions.IgnoreCase);
+                regex = new Regex(@"([0-9]{11})",RegexOptions.IgnoreCase);
                 combinou = regex.Match(cpf);
                 
             }
@@ -115,7 +118,7 @@ namespace projetobanco
         public Usuario ValidacaoConta()
         {
             Console.WriteLine("Informe o cpf:");
-            long cpfmanipula = int.Parse(Console.ReadLine());
+            long cpfmanipula = long.Parse(Console.ReadLine());
             Console.WriteLine("Informe a senha:");
             string senhamanipula = Console.ReadLine();
             Usuario u = usuarios.Find(x=>x.Cpf == cpfmanipula && x.Senha ==senhamanipula );
@@ -142,7 +145,7 @@ namespace projetobanco
         public Usuario DestinoValido()
         {
             Console.WriteLine("Informe o cpf:");
-            long cpfdestino = int.Parse(Console.ReadLine());
+            long cpfdestino = long.Parse(Console.ReadLine());
             Usuario u = usuarios.Find(x=>x.Cpf == cpfdestino);
             
             while(u==null)
